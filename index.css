@@ -1,0 +1,317 @@
+* {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body {
+    margin: 0;
+    border: none;
+    font-family: karla, sans-serif;
+    background-color: white;
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        width: 450px;
+        height: 450px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: none;
+        border-radius: 10px;
+        padding: 50px;
+        background-color: #f2e9e4;
+        color: #22223b;
+    }
+
+    #toggle-theme {
+        position: absolute;
+        top: -35px;
+        right: 0px;
+        cursor: pointer;
+        width: 50px;
+        height: 25px;
+        appearance: none;
+        background-color: #e1d9d5;
+        box-shadow: inset 0 0 3px #c9ada7;
+        border-radius: 15px;
+        outline: none;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0px;
+            width: 25px;
+            height: 25px;
+            transform: scale(0.8);
+            background-color: white;
+            background-image: url("images/light_mode.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 80%;
+            border-radius: 50%;
+            transition: left 0.5s;
+        }
+        &:checked::after {
+            left: 25px;
+        }
+    }
+
+    h1 {
+        font-weight: 800;
+        font-size: 40px;
+        margin: 0;
+    }
+    .highlight-words {
+        color: #9a8c98;
+    }
+
+    p {
+        font-weight: 300;
+        font-size: 20px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        font-size: 20px;
+        font-weight: 300;
+        list-style-type: none;
+    }
+    li {
+        margin: 5px 0;
+    }
+
+    #length {
+        height: 28px;
+        font-size: 18px;
+        font-weight: 300;
+        padding: 5px;
+        border: 1px solid #9a8c98;
+        border-radius: 5px;
+        background-color: white;
+        color: #22223b;
+        margin-left: 5px;
+        font-family: karla, sans-serif;
+    }
+
+    #case {
+        font-size: 18px;
+        font-weight: 300;
+        border: 1px solid #9a8c98;
+        border-radius: 5px;
+        background-color: white;
+        color: #22223b;
+        font-family: karla, sans-serif;
+        padding: 0px 5px;
+        line-height: 1.2;
+        height: 28px;
+    }
+
+    .container {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        font-size: 20px;
+        user-select: none;
+    }
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    .container .checkmark {
+        position: absolute;
+        top: 1px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #fff;
+        border: 1px solid #9a8c98;
+        border-radius: 5px;
+    }
+    .container:hover input ~ .checkmark {
+        background-color: #eee;
+    }
+    .container input:checked ~ .checkmark {
+        background-color: #9a8c98;
+    }
+    .container:hover input:checked ~ .checkmark {
+        background-color: #867984;
+    }
+    .container .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    .container input:checked ~ .checkmark:after {
+        display: block;
+    }
+    .container .checkmark:after {
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    button {
+        background-color: #9a8c98;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-family: karla, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    button:hover {
+        background-color: #867984;
+    }
+
+    .passwords {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-top: 25px;
+        border-top: 1px solid #9a8c98;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+
+    .copy-target {
+        position: relative;
+        display: inline-block;
+        width: 80%;
+        text-align: center;
+    }
+
+    .password {
+        font-size: 16px;
+        font-weight: 500;
+        padding: 10px;
+        border-radius: 5px;
+        height: 20px;
+        text-align: center;
+        background-color: #c9ada7;
+        color: white;
+        margin: 0;
+        cursor: default;
+    }
+
+    .hovereffect:hover{
+        background-color: #b69e98;
+    }
+
+    .tooltip {
+        visibility: hidden;
+        padding: 5px 10px;
+        background-color: white;
+        color: #22223b;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 120%;
+        transform: translate(0%, -50%);
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        cursor: default;
+    }
+
+    .tooltip.show {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.3s;
+    }
+
+    #note {
+        font-size: 14px;
+        font-weight: 300;
+        color: #9a8c98;
+        margin: 10px auto 0;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        width: 80%;
+        visibility: hidden;
+    }
+}
+
+body.dark {
+    background-color: #22223b;
+    main {
+        background-color: #4a4e69;
+        color: #f2e9e4;
+    }
+    .highlight-words {
+        color: #c9ada7;
+    }
+    #toggle-theme {
+        background-color: #3c3c5c;
+        box-shadow: inset 0 0 3px #9a8c98;
+        &::after {
+            left: 25px;
+            background-color: #9a8c98;
+            background-image: url("images/dark_mode.png");
+        }
+    }
+
+    #length,
+    #case {
+        background-color: #2d2d4d;
+        border-color: #c9ada7;
+        color: #f2e9e4;
+    }
+    .container .checkmark {
+        background-color: #2d2d4d;
+        border: 1px solid #c9ada7;
+        border-radius: 5px;
+    }
+    .container:hover input ~ .checkmark {
+        background-color: #3c3c5c;
+    }
+    .container input:checked ~ .checkmark {
+        background-color: #c9ada7;
+    }
+    .container:hover input:checked ~ .checkmark {
+        background-color: #b69e98;
+    }
+
+    button {
+        background-color: #c9ada7;
+        color: white;
+    }
+    button:hover {
+        background-color: #b69e98;
+    }
+
+    .password {
+        background-color: #9a8c98;
+        color: white;
+    }
+    .hovereffect:hover {
+        background-color: #867984;
+    }
+
+}
